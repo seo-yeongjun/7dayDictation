@@ -73,6 +73,22 @@ public class ImageSet {
 		return new ImageIcon(Main.class.getResource("./img/reviewRollover.png"));
 	}
 	
+	public ImageIcon nextQuiz() {
+		return new ImageIcon(Main.class.getResource("./img/nextQuiz.png"));
+	}
+
+	public ImageIcon nextQuizRollover() {
+		return new ImageIcon(Main.class.getResource("./img/nextQuizRollover.png"));
+	}
+	
+	public ImageIcon nextStudy() {
+		return new ImageIcon(Main.class.getResource("./img/nextStudy.png"));
+	}
+
+	public ImageIcon nextStudyRollover() {
+		return new ImageIcon(Main.class.getResource("./img/nextStudyRollover.png"));
+	}
+	
 	// 배경 이미지 메소드
 	public Image startBG() {
 		return new ImageIcon(Main.class.getResource("./img/startBG.png")).getImage();
@@ -84,5 +100,9 @@ public class ImageSet {
 	
 	public Image mainPanel() {
 		return new ImageIcon(Main.class.getResource("./img/mainPanel.png")).getImage();
+	}
+	
+	public Image studyQuizPanel() {
+		return new ImageIcon(Main.class.getResource("./img/studyQuizPanel.png")).getImage();
 	}
 }

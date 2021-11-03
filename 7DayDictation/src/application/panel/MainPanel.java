@@ -39,7 +39,7 @@ public class MainPanel extends JPanel {
 	JLabel dateTag = new JLabel();
 
 	// 왼쪽 오른쪽 버튼 리스너
-		MainPanelDayListener dayListener = new MainPanelDayListener(day, btnLeft, btnRight, dayTag);
+		MainPanelDayListener dayListener = new MainPanelDayListener(day, btnLeft, btnRight, dayTag, btnStudyStart);
 
 	
 	public MainPanel() {
@@ -74,6 +74,7 @@ public class MainPanel extends JPanel {
 		btnSet(btnReview);
 		btnLeft.addActionListener(dayListener);
 		btnRight.addActionListener(dayListener);
+		btnStudyStart.addActionListener(dayListener);
 		btnLeft.setRolloverIcon(imgs.leftRollover());
 		btnReview.setRolloverIcon(imgs.reviewRollover());
 		btnRight.setRolloverIcon(imgs.rightRollover());

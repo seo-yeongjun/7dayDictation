@@ -13,8 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import application.img.ImageSet;
-import application.listener.btn.MainPanelDayListener;
-import application.listener.btn.TxtPathSet;
+import application.listenerForPanel.btn.MainPanelDayListener;
+import application.listenerForPanel.btn.TxtPathSet;
 
 public class MainPanel extends JPanel {
 	// 이미지 모음 클래스

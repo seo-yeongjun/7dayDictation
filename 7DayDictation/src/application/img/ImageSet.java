@@ -40,7 +40,7 @@ public class ImageSet {
 	public ImageIcon firstStartRollover() {
 		return new ImageIcon(Main.class.getResource("./img/firstStartRollover.png"));
 	}
-	
+
 	public ImageIcon left() {
 		return new ImageIcon(Main.class.getResource("./img/left.png"));
 	}
@@ -48,7 +48,7 @@ public class ImageSet {
 	public ImageIcon leftRollover() {
 		return new ImageIcon(Main.class.getResource("./img/leftRollover.png"));
 	}
-	
+
 	public ImageIcon right() {
 		return new ImageIcon(Main.class.getResource("./img/right.png"));
 	}
@@ -56,7 +56,7 @@ public class ImageSet {
 	public ImageIcon rightRollover() {
 		return new ImageIcon(Main.class.getResource("./img/rightRollover.png"));
 	}
-	
+
 	public ImageIcon studyStart() {
 		return new ImageIcon(Main.class.getResource("./img/studySrart.png"));
 	}
@@ -64,7 +64,7 @@ public class ImageSet {
 	public ImageIcon studyStartRollover() {
 		return new ImageIcon(Main.class.getResource("./img/studyStartRollover.png"));
 	}
-	
+
 	public ImageIcon review() {
 		return new ImageIcon(Main.class.getResource("./img/review.png"));
 	}
@@ -72,7 +72,7 @@ public class ImageSet {
 	public ImageIcon reviewRollover() {
 		return new ImageIcon(Main.class.getResource("./img/reviewRollover.png"));
 	}
-	
+
 	public ImageIcon nextQuiz() {
 		return new ImageIcon(Main.class.getResource("./img/nextQuiz.png"));
 	}
@@ -80,7 +80,7 @@ public class ImageSet {
 	public ImageIcon nextQuizRollover() {
 		return new ImageIcon(Main.class.getResource("./img/nextQuizRollover.png"));
 	}
-	
+
 	public ImageIcon nextStudy() {
 		return new ImageIcon(Main.class.getResource("./img/nextStudy.png"));
 	}
@@ -88,7 +88,11 @@ public class ImageSet {
 	public ImageIcon nextStudyRollover() {
 		return new ImageIcon(Main.class.getResource("./img/nextStudyRollover.png"));
 	}
-	
+
+	public ImageIcon answer() {
+		return new ImageIcon(Main.class.getResource("./img/answer.png"));
+	}
+
 	// 배경 이미지 메소드
 	public Image startBG() {
 		return new ImageIcon(Main.class.getResource("./img/startBG.png")).getImage();
@@ -97,11 +101,11 @@ public class ImageSet {
 	public Image firstStartBG() {
 		return new ImageIcon(Main.class.getResource("./img/firstStartBG.png")).getImage();
 	}
-	
+
 	public Image mainPanel() {
 		return new ImageIcon(Main.class.getResource("./img/mainPanel.png")).getImage();
 	}
-	
+
 	public Image studyQuizPanel() {
 		return new ImageIcon(Main.class.getResource("./img/studyQuizPanel.png")).getImage();
 	}

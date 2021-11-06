@@ -15,7 +15,7 @@ public class NdaySet {
 	String QuizLeft[] = new String[3];
 	String QuizRight[] = new String[3];
 	String QuizAnswer[] = new String[3];
-	ImageIcon StudyImg[] = new ImageIcon[3];
+	String Study[] = new String[3];
 	String dictations[] = new String[10];
 
 	// txtPath
@@ -37,23 +37,39 @@ public class NdaySet {
 		return QuizAnswer;
 	}
 
-	public ImageIcon[] getStudyImg() {
-		return StudyImg;
+	public String[] getStudy() {
+		return Study;
 	}
 
 	public String[] getDictations() {
 		return dictations;
 	}
-	
+
+	public int getDay() {
+		return day;
+	}
+
 	public NdaySet(int i) {
 		this.day = i;
 		File quizSet = txtPath.quizDay(i);
 		File quizLeft = txtPath.quizLeft(i);
 		File quizRight = txtPath.quizRight(i);
 		File quizAnswer = txtPath.quizAnswer(i);
-		// studyImg
 		File dictation = txtPath.dictation(i);
 
+		for (int progress = 1; progress <= 3; progress++) {
+			try {
+				BufferedReader reader = new BufferedReader(new FileReader(txtPath.study(i, progress)));
+				String line = "";
+				Study[progress-1]="";
+				while((line = reader.readLine()) != null) {
+					Study[progress-1] += line + "\n";
+				}
+				reader.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(quizSet));
 			String line = "";
@@ -104,6 +120,5 @@ public class NdaySet {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-
 	}
 }

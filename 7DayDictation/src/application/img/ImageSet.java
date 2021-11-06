@@ -109,4 +109,8 @@ public class ImageSet {
 	public Image studyQuizPanel() {
 		return new ImageIcon(Main.class.getResource("./img/studyQuizPanel.png")).getImage();
 	}
+
+	public Image studyPanel() {
+		return new ImageIcon(Main.class.getResource("./img/studyPanel.png")).getImage();
+	}
 }

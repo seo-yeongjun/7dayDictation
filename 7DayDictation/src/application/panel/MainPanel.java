@@ -2,6 +2,7 @@ package application.panel;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.io.BufferedReader;
@@ -48,24 +49,24 @@ public class MainPanel extends JPanel {
 
 		// n일 라벨 세팅
 		dayTag.setBorder(null);
-		dayTag.setFont(new Font("바탕체", Font.PLAIN, 52));
+		dayTag.setFont(new Font("바탕체", Font.PLAIN, 31));
 		dayTag.setForeground(Color.decode("#707070"));
 		Dimension size6 = dayTag.getPreferredSize();
-		dayTag.setBounds(490, 465, size6.width, size6.height);
+		dayTag.setBounds(288, 279, size6.width, size6.height);
 		// 이름표 라벨 세팅
 		nameTag.setBorder(null);
 		nameTagSet();
 		nameTag.setForeground(Color.decode("#707070"));
-		nameTag.setFont(new Font("바탕체", Font.PLAIN, 35));
+		nameTag.setFont(new Font("바탕체", Font.PLAIN, 21));
 		Dimension size = nameTag.getPreferredSize();
-		nameTag.setBounds(55, 30, size.width, size.height);
+		nameTag.setBounds(33, 18, size.width, size.height);
 		// 시작 날짜 라벨 세팅
 		dateTag.setBorder(null);
-		dateTag.setFont(new Font("바탕체", Font.PLAIN, 15));
+		dateTag.setFont(new Font("바탕체", Font.PLAIN, 11));
 		dateTag.setForeground(Color.decode("#707070"));
 		dateTagSet();
 		Dimension size4 = dateTag.getPreferredSize();
-		dateTag.setBounds(1050, 410, size4.width, size4.height);
+		dateTag.setBounds(630, 244, size4.width, size4.height);
 
 		// 버튼 세팅
 		btnSet(btnLeft);
@@ -83,10 +84,10 @@ public class MainPanel extends JPanel {
 		Dimension size2 = btnRight.getPreferredSize();
 		Dimension size3 = btnStudyStart.getPreferredSize();
 		Dimension size5 = btnReview.getPreferredSize();
-		btnLeft.setBounds(360, 460, size1.width, size1.height);
-		btnRight.setBounds(700, 460, size2.width, size2.height);
-		btnStudyStart.setBounds(370, 560, size3.width, size3.height);
-		btnReview.setBounds(780, 560, size5.width, size5.height);
+		btnLeft.setBounds(216, 276, size1.width, size1.height);
+		btnRight.setBounds(410, 276, size2.width, size2.height);
+		btnStudyStart.setBounds(216, 336, size3.width, size3.height);
+		btnReview.setBounds(464, 336, size5.width, size5.height);
 
 		add(nameTag);
 		add(dateTag);

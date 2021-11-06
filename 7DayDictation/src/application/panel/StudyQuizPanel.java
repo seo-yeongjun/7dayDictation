@@ -15,11 +15,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import application.Application;
 import application.img.ImageSet;
+import application.listenerForPanel.btn.StudyquizToStudyListener;
 import application.nDaySet.NdaySet;
 
 public class StudyQuizPanel extends JPanel {
-
+	int check = 0;
 	int progress = 0;
 	// 이미지 모음 클래스
 	ImageSet imgs = new ImageSet();
@@ -37,59 +39,50 @@ public class StudyQuizPanel extends JPanel {
 	// 문제 라벨
 	JLabel quizJLabel = new JLabel();
 	// day Set;
-	String QuizSet[] = new String[3];
-	String QuizLeft[] = new String[3];
-	String QuizRight[] = new String[3];
-	String QuizAnswer[] = new String[3];
-	ImageIcon StudyImg[] = new ImageIcon[3];
-	String dictations[] = new String[10];
-
+	NdaySet ndaySet;
+	
 	public StudyQuizPanel(NdaySet ndaySet) {
-		this.QuizAnswer = ndaySet.getQuizAnswer();
-		this.QuizSet = ndaySet.getQuizSet();
-		this.QuizLeft = ndaySet.getQuizLeft();
-		this.QuizRight = ndaySet.getQuizRight();
-		this.StudyImg = ndaySet.getStudyImg();
-		this.dictations = ndaySet.getDictations();
+		this.ndaySet=ndaySet;
 
 		MouseAdapter leftOrRight = new LeftOrRight();
+		ActionListener nextQuiz = new NextQuiz();
+		ActionListener checkAnswer = new CheckAnswer();
 		setLayout(null);
 
 		// 다음 문제 버튼 설정
 		btnSet(btnNext);
+		btnNext.setVisible(false);
 		Dimension size1 = btnNext.getPreferredSize();
-		btnNext.setBounds(1000, 920, size1.width, size1.height);
+		btnNext.setBounds(600, 552, size1.width, size1.height);
 		btnNext.setRolloverIcon(imgs.nextQuizRollover());
-		btnNext.addActionListener(null);
+		btnNext.addActionListener(nextQuiz);
 		// 학습 하기 버튼 설정
 		btnSet(btnNextStudy);
 		btnNextStudy.setVisible(false);
+		btnNextStudy.addActionListener(new StudyquizToStudyListener(ndaySet));
 		Dimension size2 = btnNextStudy.getPreferredSize();
-		btnNextStudy.setBounds(1000, 920, size2.width, size2.height);
+		btnNextStudy.setBounds(600, 552, size2.width, size2.height);
 		btnNextStudy.setRolloverIcon(imgs.nextStudyRollover());
 		// 왼쪽 버튼 설정
 		btnSet(btnLeft);
 		btnLeft.addMouseListener(leftOrRight);
-		btnLeft.setFont(new Font("바탕체", Font.PLAIN, 77));
-		btnLeft.setText(QuizLeft[0]);
-		Dimension size3 = btnLeft.getPreferredSize();
-		btnLeft.setBounds(380 - (size3.width / 2), 600, size3.width, size3.height);
+		btnLeft.addActionListener(checkAnswer);
+		btnLeft.setFont(new Font("바탕체", Font.PLAIN, 46));
+
 		// 오른쪽 버튼 설정
 		btnSet(btnRight);
 		btnRight.addMouseListener(leftOrRight);
-		btnRight.setFont(new Font("바탕체", Font.PLAIN, 77));
-		btnRight.setText(QuizRight[0]);
-		Dimension size4 = btnRight.getPreferredSize();
-		btnRight.setBounds(1020 - (size4.width / 2), 600, size4.width, size4.height);
+		btnRight.addActionListener(checkAnswer);
+		btnRight.setFont(new Font("바탕체", Font.PLAIN, 46));
+
 		// 정답 라벨 설정
 		Dimension size5 = answerLabel.getPreferredSize();
-		answerLabel.setBounds(180, 520, size5.width, size5.height);
+		answerLabel.setBounds(108, 312, size5.width, size5.height);
 		answerLabel.setVisible(false);
-		// 문제 라벨 설정
-		quizJLabel.setFont(new Font("바탕체", Font.PLAIN, 72));
-		quizJLabel.setText(QuizSet[0]);
-		Dimension size6 = quizJLabel.getPreferredSize();
-		quizJLabel.setBounds(700 - (size6.width / 2), 340, size6.width, size6.height);
+		// 문제 라벨 폰트
+		quizJLabel.setFont(new Font("바탕체", Font.PLAIN, 43));
+
+		setLabel();
 
 		add(btnNext);
 		add(btnNextStudy);
@@ -97,6 +90,19 @@ public class StudyQuizPanel extends JPanel {
 		add(btnLeft);
 		add(btnRight);
 		add(quizJLabel);
+	}
+
+	// 라벨 재설정
+	public void setLabel() {
+		quizJLabel.setText(ndaySet.getQuizSet()[progress]);
+		Dimension size6 = quizJLabel.getPreferredSize();
+		quizJLabel.setBounds(420 - (size6.width / 2), 204, size6.width, size6.height);
+		btnRight.setText(ndaySet.getQuizRight()[progress]);
+		Dimension size4 = btnRight.getPreferredSize();
+		btnRight.setBounds(612 - (size4.width / 2), 360, size4.width, size4.height);
+		btnLeft.setText(ndaySet.getQuizLeft()[progress]);
+		Dimension size3 = btnLeft.getPreferredSize();
+		btnLeft.setBounds(228 - (size3.width / 2), 360, size3.width, size3.height);
 	}
 
 	// 배경 이미지 설정
@@ -115,6 +121,75 @@ public class StudyQuizPanel extends JPanel {
 		btn.setFocusPainted(false);
 	}
 
+	// 다음 문제 리스너
+	class NextQuiz implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+				check = 0;
+				setLabel();
+				btnNext.setVisible(false);
+				answerLabel.setVisible(false);
+		}
+	}
+
+	// 정답 체크 리스너
+	class CheckAnswer implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (check == 0) {
+				JButton btn = (JButton) e.getSource();
+
+				// 라벨 위치 설정
+				if (ndaySet.getQuizAnswer()[progress].equals("1")) {
+					answerLabel.setLocation(108, answerLabel.getY());
+				} else {
+					answerLabel.setLocation(492, answerLabel.getY());
+				}
+				// 정답일시
+				if (ndaySet.getQuizAnswer()[progress].equals("1") && btn == btnLeft
+						|| ndaySet.getQuizAnswer()[progress].equals("0") && btn == btnRight) {
+					// to do: 정답 소리
+					answerLabel.setVisible(true);
+					progress++;
+				} // 오답일시
+				else if (ndaySet.getQuizAnswer()[progress].equals("0") && btn == btnLeft
+						|| ndaySet.getQuizAnswer()[progress].equals("1") && btn == btnRight) {
+					// to do: 틀림 소리
+					Timer wrongAnswer = new Timer(75, new ActionListener() {
+						int x = btn.getX();
+						int y = btn.getY();
+						int key = 0;
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							if (key == 0) {
+								btn.setLocation(x - 6, y);
+								key++;
+							} else if (key == 1) {
+								btn.setLocation(x + 6, y);
+								key++;
+							} else if (key == 2) {
+								btn.setLocation(x - 6, y);
+								key++;
+							} else {
+								btn.setLocation(x, y);
+								((Timer) e.getSource()).stop();
+							}
+						}
+					});
+					wrongAnswer.start();
+					answerLabel.setVisible(true);
+					progress++;
+				}
+			}
+			check++;
+			if (progress == 3) {
+				btnNextStudy.setVisible(true);
+			} else {
+				btnNext.setVisible(true);
+			}
+		}
+	}
+
 	// 왼쪽 오른쪽 버튼 리스너
 	class LeftOrRight extends MouseAdapter {
 		public void mouseEntered(MouseEvent e) {
@@ -125,59 +200,6 @@ public class StudyQuizPanel extends JPanel {
 		public void mouseExited(MouseEvent e) {
 			JButton btn = (JButton) e.getSource();
 			btn.setForeground(Color.black);
-		}
-
-		int check = 0;
-
-		public void mouseClicked(MouseEvent e) {
-			if (check == 0) {
-				JButton btn = (JButton) e.getSource();
-
-				// 라벨 위치 설정
-				if (QuizAnswer[progress].equals("1")) {
-					answerLabel.setLocation(180, answerLabel.getY());
-				} else {
-					answerLabel.setLocation(820, answerLabel.getY());
-				}
-				// 정답일시
-				if (QuizAnswer[progress].equals("1") && btn == btnLeft
-						|| QuizAnswer[progress].equals("0") && btn == btnRight) {
-					// to do: 정답 소리
-					answerLabel.setVisible(true);
-				} // 오답일시
-				else if (QuizAnswer[progress].equals("0") && btn == btnLeft
-						|| QuizAnswer[progress].equals("1") && btn == btnRight) {
-					// to do: 틀림 소리
-					Timer wrongAnswer = new Timer(100, new ActionListener() {
-						int x = btn.getX();
-						int y = btn.getY();
-						int key = 0;
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if (key == 0) {
-								btn.setLocation(x - 10, y);
-								key++;
-							} else if (key == 1) {
-								btn.setLocation(x + 10, y);
-								key++;
-							} else if (key == 2) {
-								btn.setLocation(x - 10, y);
-								key++;
-							} else if (key == 3) {
-								btn.setLocation(x + 10, y);
-								key++;
-							} else {
-								btn.setLocation(x, y);
-								((Timer) e.getSource()).stop();
-							}
-						}
-					});
-					wrongAnswer.start();
-					answerLabel.setVisible(true);
-				}
-			}
-			check++;
 		}
 	}
 

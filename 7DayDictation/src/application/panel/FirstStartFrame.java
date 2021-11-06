@@ -20,7 +20,7 @@ public class FirstStartFrame extends JFrame {
 		setTitle("첫 시작");
 		setVisible(true);
 		setResizable(false);
-		setSize(562, 425);
+		setSize(342, 270);
 		setContentPane(new FirstPanel());
 	}
 
@@ -47,23 +47,23 @@ class FirstPanel extends JPanel {
 		//버튼 세팅
 		btnSet(firstStart);
 		Dimension size1 = firstStart.getPreferredSize();
-		firstStart.setBounds(130, 250, size1.width, size1.height);
+		firstStart.setBounds(78, 150, size1.width, size1.height);
 		firstStart.setRolloverIcon(imgs.firstStartRollover());
 		firstStart.addActionListener(firstStartListener);
 		
 		// 이름필드 세팅
 		nameArea.setBorder(null);
-		nameArea.setFont(new Font("바탕체",Font.PLAIN,35));
+		nameArea.setFont(new Font("바탕체",Font.PLAIN,21));
 		Dimension size2 = nameArea.getPreferredSize();
-		nameArea.setBounds(255,90,size2.width,size2.height);
+		nameArea.setBounds(153,54,size2.width,size2.height);
 		nameArea.addActionListener(firstStartListener);
 		
 		//에러 메세지 세팅
 		
 		errorLabel.setForeground(Color.red);
-		errorLabel.setFont(new Font("바탕체",Font.PLAIN,20));
+		errorLabel.setFont(new Font("바탕체",Font.PLAIN,12));
 		Dimension size3 = errorLabel.getPreferredSize();
-		errorLabel.setBounds(170,220,size3.width,size3.height);
+		errorLabel.setBounds(102,132,size3.width,size3.height);
 		errorLabel.setVisible(false);
 		//버튼 추가
 		add(firstStart);

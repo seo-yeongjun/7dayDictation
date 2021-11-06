@@ -2,8 +2,6 @@ package application.panel;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -30,18 +28,18 @@ public class Start extends JPanel {
 		// 시작하기 버튼 설정
 		btnSet(btnStart);
 		Dimension size1 = btnStart.getPreferredSize();
-		btnStart.setBounds(550, 630, size1.width, size1.height);
+		btnStart.setBounds(325, 378, size1.width, size1.height);
 		btnStart.setRolloverIcon(imgs.startStudyRollover());
 		btnStart.addActionListener(new StartListener());
 		// 한글 테스트 버튼 설정
 		btnSet(btnTest);
 		Dimension size2 = btnTest.getPreferredSize();
-		btnTest.setBounds(400, 720, size2.width, size2.height);
+		btnTest.setBounds(238, 427, size2.width, size2.height);
 		btnTest.setRolloverIcon(imgs.startTestRollover());
 		// 설정 버튼 설정
 		btnSet(btnSetting);
 		Dimension size3 = btnSetting.getPreferredSize();
-		btnSetting.setBounds(1300, 900, size3.width, size3.height);
+		btnSetting.setBounds(770, 530, size3.width, size3.height);
 		btnSetting.setRolloverIcon(imgs.settingRollover());
 
 		// 버튼 추가

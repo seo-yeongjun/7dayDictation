@@ -24,5 +24,8 @@ public class TxtPathSet {
 	public File dictation(int i) {
 		return new File("src/application/txt/dictation"+i+".txt");
 	}
+	public File study(int i, int progress) {
+		return new File("src/application/txt/study"+i+"-"+progress+".txt");
+	}
 }
 

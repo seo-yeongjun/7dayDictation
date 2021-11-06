@@ -2,6 +2,7 @@ package application;
 
 import application.nDaySet.NdaySet;
 import application.panel.MainPanel;
+import application.panel.StudyPanel;
 import application.panel.StudyQuizPanel;
 
 public class Application {
@@ -15,6 +16,9 @@ public class Application {
 	}
 	public static StudyQuizPanel getStudyQuizPanel(NdaySet ndaySet) {
 		return new StudyQuizPanel(ndaySet);
+	}
+	public static StudyPanel getStudyPanel(NdaySet ndaySet) {
+		return new StudyPanel(ndaySet);
 	}
 	public static void main(String[] args) {
 		getMain();

@@ -1,4 +1,4 @@
-package application.listenerForPanel.btn;
+package application.listenerForPanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import application.Application;
+import application.TxtPathSet;
 
 public class FirstStartListener implements ActionListener {
 	JButton firstStart;

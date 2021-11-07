@@ -5,9 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import javax.swing.ImageIcon;
-
-import application.listenerForPanel.btn.TxtPathSet;
+import application.TxtPathSet;
 
 public class NdaySet {
 	int day;

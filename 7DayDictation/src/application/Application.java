@@ -7,20 +7,25 @@ import application.panel.StudyQuizPanel;
 
 public class Application {
 	static Main main = new Main();
-	
+
 	public static Main getMain() {
 		return main;
 	}
+
 	public static MainPanel getMainPanel() {
 		return new MainPanel();
 	}
+
 	public static StudyQuizPanel getStudyQuizPanel(NdaySet ndaySet) {
 		return new StudyQuizPanel(ndaySet);
 	}
+
 	public static StudyPanel getStudyPanel(NdaySet ndaySet) {
 		return new StudyPanel(ndaySet);
 	}
+
 	public static void main(String[] args) {
 		getMain();
 	}
+
 }

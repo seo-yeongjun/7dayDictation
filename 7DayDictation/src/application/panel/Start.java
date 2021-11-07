@@ -6,8 +6,8 @@ import java.awt.Graphics;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import application.img.ImageSet;
-import application.listenerForPanel.btn.StartListener;
+import application.ImageSet;
+import application.listenerForPanel.StartListener;
 
 public class Start extends JPanel {
 
@@ -39,7 +39,7 @@ public class Start extends JPanel {
 		// 설정 버튼 설정
 		btnSet(btnSetting);
 		Dimension size3 = btnSetting.getPreferredSize();
-		btnSetting.setBounds(770, 530, size3.width, size3.height);
+		btnSetting.setBounds(770, 580, size3.width, size3.height);
 		btnSetting.setRolloverIcon(imgs.settingRollover());
 
 		// 버튼 추가

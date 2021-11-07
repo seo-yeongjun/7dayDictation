@@ -11,8 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import application.img.ImageSet;
-import application.listenerForPanel.btn.FirstStartListener;
+import application.ImageSet;
+import application.listenerForPanel.FirstStartListener;
 
 public class FirstStartFrame extends JFrame {
 	

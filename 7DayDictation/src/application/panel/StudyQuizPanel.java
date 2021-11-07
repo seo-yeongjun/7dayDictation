@@ -9,15 +9,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import application.Application;
-import application.img.ImageSet;
-import application.listenerForPanel.btn.StudyquizToStudyListener;
+import application.ImageSet;
+import application.listenerForPanel.StudyquizToStudyListener;
 import application.nDaySet.NdaySet;
 
 public class StudyQuizPanel extends JPanel {
@@ -53,7 +51,7 @@ public class StudyQuizPanel extends JPanel {
 		btnSet(btnNext);
 		btnNext.setVisible(false);
 		Dimension size1 = btnNext.getPreferredSize();
-		btnNext.setBounds(600, 552, size1.width, size1.height);
+		btnNext.setBounds(600, 572, size1.width, size1.height);
 		btnNext.setRolloverIcon(imgs.nextQuizRollover());
 		btnNext.addActionListener(nextQuiz);
 		// 학습 하기 버튼 설정

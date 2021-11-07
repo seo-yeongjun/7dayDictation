@@ -2,7 +2,6 @@ package application.panel;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.io.BufferedReader;
@@ -13,9 +12,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import application.img.ImageSet;
-import application.listenerForPanel.btn.MainPanelDayListener;
-import application.listenerForPanel.btn.TxtPathSet;
+import application.ImageSet;
+import application.TxtPathSet;
+import application.listenerForPanel.MainPanelDayListener;
 
 public class MainPanel extends JPanel {
 	// 이미지 모음 클래스
@@ -52,7 +51,7 @@ public class MainPanel extends JPanel {
 		dayTag.setFont(new Font("바탕체", Font.PLAIN, 31));
 		dayTag.setForeground(Color.decode("#707070"));
 		Dimension size6 = dayTag.getPreferredSize();
-		dayTag.setBounds(288, 279, size6.width, size6.height);
+		dayTag.setBounds(288, 289, size6.width, size6.height);
 		// 이름표 라벨 세팅
 		nameTag.setBorder(null);
 		nameTagSet();
@@ -84,10 +83,10 @@ public class MainPanel extends JPanel {
 		Dimension size2 = btnRight.getPreferredSize();
 		Dimension size3 = btnStudyStart.getPreferredSize();
 		Dimension size5 = btnReview.getPreferredSize();
-		btnLeft.setBounds(216, 276, size1.width, size1.height);
-		btnRight.setBounds(410, 276, size2.width, size2.height);
-		btnStudyStart.setBounds(216, 336, size3.width, size3.height);
-		btnReview.setBounds(464, 336, size5.width, size5.height);
+		btnLeft.setBounds(216, 286, size1.width, size1.height);
+		btnRight.setBounds(410, 286, size2.width, size2.height);
+		btnStudyStart.setBounds(216, 346, size3.width, size3.height);
+		btnReview.setBounds(464, 346, size5.width, size5.height);
 
 		add(nameTag);
 		add(dateTag);

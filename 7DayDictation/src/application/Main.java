@@ -11,7 +11,7 @@ public class Main extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		setResizable(true);
-		setSize(865, 644);
+		setSize(865, 684);
 		setContentPane(new Start());
 		revalidate();
 	}

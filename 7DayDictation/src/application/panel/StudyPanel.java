@@ -17,6 +17,7 @@ import javax.swing.JTextArea;
 import application.ImageSet;
 import application.ScrollBarUI;
 import application.nDaySet.NdaySet;
+import application.listenerForPanel.DictationListener;
 
 public class StudyPanel extends JPanel {
 	// 이미지 모음 클래스
@@ -34,16 +35,17 @@ public class StudyPanel extends JPanel {
 	// 받아쓰기 버튼
 	JButton btnDictation = new JButton(imgs.dictationStart());
 	// day Set;
-	NdaySet ndaySet;
+	NdaySet ndaySet; 
 
 	public StudyPanel(NdaySet ndaySet) {
 		setLayout(null);
 		this.ndaySet = ndaySet;
+		
 		ActionListener nextStudyActionListener = new NextStudyListener();
 
 		// 학습공간 세팅
 		studyArea.setFont(new Font("바탕체", Font.PLAIN, 27));
-		progressLabel.setFont(openFontTTF("a남북통일"));
+		progressLabel.setFont(openFontTTF("a남북통일",49f));
 		studyArea.setForeground(Color.WHITE);
 		studyArea.setEditable(false);
 		studyArea.setOpaque(false);
@@ -63,13 +65,14 @@ public class StudyPanel extends JPanel {
 		btnSet(btnDictation);
 		btnSet(btnPrev);
 		btnNext.addActionListener(nextStudyActionListener);
+		btnDictation.addActionListener(new DictationListener(ndaySet));
 		Dimension size3 = btnNext.getPreferredSize();
-		btnNext.setBounds(650, 520, size3.width, size3.height);
+		btnNext.setBounds(700, 590, size3.width, size3.height);
 		Dimension size4 = btnDictation.getPreferredSize();
-		btnDictation.setBounds(640, 520, size4.width, size4.height);
+		btnDictation.setBounds(640, 590, size4.width, size4.height);
 		btnPrev.addActionListener(nextStudyActionListener);
 		Dimension size5 = btnPrev.getPreferredSize();
-		btnPrev.setBounds(80, 520, size5.width, size5.height);
+		btnPrev.setBounds(30, 590, size5.width, size5.height);
 		btnPrev.setVisible(false);
 		btnNext.setRolloverIcon(imgs.nextRollover());
 		btnDictation.setRolloverIcon(imgs.dictationStartRollover());
@@ -137,11 +140,11 @@ public class StudyPanel extends JPanel {
 	}
 
 	// 폰트 생성 메소드
-	public static Font openFontTTF(String name) {
+	public static Font openFontTTF(String name,float size) {
 		String fontPath = "/font/" + name + ".ttf";
 		try (InputStream is = StudyPanel.class.getResourceAsStream(fontPath)) {
 			Font font = Font.createFont(Font.TRUETYPE_FONT, is);
-			return font.deriveFont(49f);
+			return font.deriveFont(size);
 		} catch (Exception e) {
 			return null;
 		}

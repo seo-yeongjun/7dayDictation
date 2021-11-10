@@ -115,6 +115,50 @@ public class ImageSet {
 	public ImageIcon prev() {
 		return new ImageIcon(Main.class.getResource("/img/prev.png"));
 	}
+	
+	public ImageIcon answerLabel() {
+		return new ImageIcon(Main.class.getResource("/img/answerLabel.png"));
+	}
+	
+	public ImageIcon star() {
+		return new ImageIcon(Main.class.getResource("/img/star.png"));
+	}
+	
+	public ImageIcon listen() {
+		return new ImageIcon(Main.class.getResource("/img/listen.png"));
+	}
+
+	public ImageIcon grade() {
+		return new ImageIcon(Main.class.getResource("/img/grade.png"));
+	}
+	
+	public ImageIcon gradeRollover() {
+		return new ImageIcon(Main.class.getResource("/img/gradeRollover.png"));
+	}
+	
+	public ImageIcon exit() {
+		return new ImageIcon(Main.class.getResource("/img/exit.png"));
+	}
+	
+	public ImageIcon exitRollover() {
+		return new ImageIcon(Main.class.getResource("/img/exitRollover.png"));
+	}
+	
+	public ImageIcon checkAnswer() {
+		return new ImageIcon(Main.class.getResource("/img/checkAnswer.png"));
+	}
+	
+	public ImageIcon checkAnswerRollover() {
+		return new ImageIcon(Main.class.getResource("/img/checkAnswerRollover.png"));
+	}
+	
+	public ImageIcon myAnswer() {
+		return new ImageIcon(Main.class.getResource("/img/myAnswer.png"));
+	}
+	
+	public ImageIcon myAnswerRollover() {
+		return new ImageIcon(Main.class.getResource("/img/myAnswerRollover.png"));
+	}
 
 	// 배경 이미지 메소드
 	public Image startBG() {
@@ -135,5 +179,9 @@ public class ImageSet {
 
 	public Image studyPanel() {
 		return new ImageIcon(Main.class.getResource("/img/studyPanel.png")).getImage();
+	}
+	
+	public Image dictationPanel() {
+		return new ImageIcon(Main.class.getResource("/img/dictationPanel.png")).getImage();
 	}
 }

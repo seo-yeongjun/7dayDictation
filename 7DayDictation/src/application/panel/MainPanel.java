@@ -19,7 +19,7 @@ import application.listenerForPanel.MainPanelDayListener;
 public class MainPanel extends JPanel {
 	// 이미지 모음 클래스
 	ImageSet imgs = new ImageSet();
-
+	int nDay;
 	// 왼쪽 버튼
 	JButton btnLeft = new JButton(imgs.left());
 	// 오른쪽 버튼
@@ -37,15 +37,23 @@ public class MainPanel extends JPanel {
 	JLabel dayTag = new JLabel(Integer.toString(day));
 	// 시작 날짜 라벨
 	JLabel dateTag = new JLabel();
-
+	// 경고문 라벨
+	JLabel nDayLabel = new JLabel();
 	// 왼쪽 오른쪽 버튼 리스너
-		MainPanelDayListener dayListener = new MainPanelDayListener(day, btnLeft, btnRight, dayTag, btnStudyStart);
+		MainPanelDayListener dayListener = new MainPanelDayListener(day, btnLeft, btnRight, dayTag, btnStudyStart, nDay, nDayLabel);
 
 	
-	public MainPanel() {
+	public MainPanel(int nDay) {
 		setSize(1424, 1040);
 		setLayout(null);
-
+		this.nDay = nDay;
+		//경고문 라벨 세팅
+				nDayLabel.setFont(new Font("바탕체", Font.PLAIN, 28));
+				nDayLabel.setText(nDay+"일차 학습을 완료해야 "+"2일 차로 넘어갈 수 있습니다.");
+				nDayLabel.setForeground(Color.red);
+				Dimension size7 = nDayLabel.getPreferredSize();
+				nDayLabel.setBounds(80, 465, size7.width, size7.height);
+				nDayLabel.setVisible(false);
 		// n일 라벨 세팅
 		dayTag.setBorder(null);
 		dayTag.setFont(new Font("바탕체", Font.PLAIN, 31));
@@ -95,6 +103,7 @@ public class MainPanel extends JPanel {
 		add(btnStudyStart);
 		add(btnReview);
 		add(dayTag);
+		add(nDayLabel);
 	}
 
 	// 배경 이미지 설정
@@ -112,7 +121,6 @@ public class MainPanel extends JPanel {
 			BufferedReader reader = new BufferedReader(new FileReader(txtPathSet.userName()));
 			String name = reader.readLine();
 			nameTag.setText(name);
-
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

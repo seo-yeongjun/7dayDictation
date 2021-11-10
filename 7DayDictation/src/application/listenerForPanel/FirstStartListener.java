@@ -32,18 +32,20 @@ public class FirstStartListener implements ActionListener {
 		//텍스트 주소 모음 클래스
 		TxtPathSet txtPathSet= new TxtPathSet();
 		
+		
+		
 		if (nameArea.getText().equals("")) {
 			errorLabel.setVisible(true);
 		} else if (firstStart == e.getSource()) {
 			JButton btn = (JButton) e.getSource();
 			setUserNameAndDate(txtPathSet.userName(), txtPathSet.startDate());
 			((JFrame) btn.getTopLevelAncestor()).dispose();
-			Application.getMain().setContentPane(Application.getMainPanel());
+			Application.getMain().setContentPane(Application.getMainPanel(0));
 		} else {
 			JTextField tf = (JTextField) e.getSource();
 			setUserNameAndDate(txtPathSet.userName(), txtPathSet.startDate());
 			((JFrame) tf.getTopLevelAncestor()).dispose();
-			Application.getMain().setContentPane(Application.getMainPanel());
+			Application.getMain().setContentPane(Application.getMainPanel(0));
 		}
 
 	}

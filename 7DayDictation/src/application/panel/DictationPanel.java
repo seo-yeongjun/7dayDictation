@@ -3,10 +3,14 @@ package application.panel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,7 +27,9 @@ import application.nDaySet.NdaySet;
 public class DictationPanel extends JPanel {
 	// 이미지 모음 클래스
 	ImageSet imgs = new ImageSet();
-
+	TxtPathSet tp = new TxtPathSet();
+	BtnCheckAnswerListener btnCheckAnswerListener = new BtnCheckAnswerListener();
+	MyAnswerListener myAnswerListener = new MyAnswerListener();
 	int progress = 0;
 	JLabel dateLabel = new JLabel();
 	// 작성 필드
@@ -118,8 +124,7 @@ public class DictationPanel extends JPanel {
 		btnGrade.setRolloverIcon(imgs.gradeRollover());
 		Dimension size1 = btnGrade.getPreferredSize();
 		btnGrade.setBounds(540, 590, size1.width, size1.height);
-		// todo:
-		btnGrade.addActionListener(null);
+		btnGrade.addActionListener(new GradeListener());
 		btnSet(btnGrade);
 		add(btnGrade);
 	}
@@ -138,6 +143,7 @@ public class DictationPanel extends JPanel {
 	public void setListenButton() {
 		for (int i = 0; i < 10; i++) {
 			btnListen[i] = new JButton(imgs.listen());
+			btnListen[i].setRolloverIcon(imgs.listenRollover());
 			Dimension size1 = btnListen[i].getPreferredSize();
 			btnListen[i].setBounds(230, 110 + (i * 40), size1.width / 2, size1.height);
 			btnSet(btnListen[i]);
@@ -154,8 +160,7 @@ public class DictationPanel extends JPanel {
 			Dimension size1 = btnCheckAnswer[i].getPreferredSize();
 			btnCheckAnswer[i].setBounds(620, 110 + (i * 40), size1.width / 2, size1.height);
 			btnSet(btnCheckAnswer[i]);
-			// todo:
-			btnCheckAnswer[i].addActionListener(null);
+			btnCheckAnswer[i].addActionListener(btnCheckAnswerListener);
 			btnCheckAnswer[i].setVisible(false);
 			add(btnCheckAnswer[i]);
 		}
@@ -168,8 +173,7 @@ public class DictationPanel extends JPanel {
 			Dimension size1 = btnMyAnswer[i].getPreferredSize();
 			btnMyAnswer[i].setBounds(620, 110 + (i * 40), size1.width / 2, size1.height);
 			btnSet(btnMyAnswer[i]);
-			// todo:
-			btnMyAnswer[i].addActionListener(null);
+			btnMyAnswer[i].addActionListener(myAnswerListener);
 			btnMyAnswer[i].setVisible(false);
 			add(btnMyAnswer[i]);
 		}
@@ -218,27 +222,94 @@ public class DictationPanel extends JPanel {
 		btn.setFocusPainted(false);
 	}
 
-	// to do
+	class BtnCheckAnswerListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String answer = "";
+			JButton btn = (JButton) e.getSource();
+			for (int i = 0; i < 10; i++) {
+				if (btnCheckAnswer[i] == btn) {
+					try (BufferedReader br = new BufferedReader(new FileReader(tp.dictation(ndaySet.getDay())))) {
+						for (int j = 0; j < i; j++)
+							br.readLine();
+						answer = br.readLine();
+						br.close();
+					} catch (FileNotFoundException e1) {
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+					textField[i].setText(answer);
+					btn.setVisible(false);
+					btnMyAnswer[i].setVisible(true);
+				}
+			}
+
+		}
+	}
+
+	class MyAnswerListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String answer = "";
+			JButton btn = (JButton) e.getSource();
+			for (int i = 0; i < 10; i++) {
+				if (btnMyAnswer[i] == btn) {
+					try (BufferedReader br = new BufferedReader(new FileReader(tp.myDictation(ndaySet.getDay())))) {
+						for (int j = 0; j < i; j++)
+							br.readLine();
+						answer = br.readLine();
+						br.close();
+					} catch (FileNotFoundException e1) {
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+					textField[i].setText(answer);
+					btnCheckAnswer[i].setVisible(true);
+					btnMyAnswer[i].setVisible(false);
+				}
+			}
+
+		}
+	}
+
 	class GradeListener implements ActionListener {
 		String myAnswers = "";
-		int score=0;
+		int score = 0;
+
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			String[] answers = ndaySet.getDictations();
 			for (int i = 0; i < 10; i++) {
 				textField[i].setEditable(false);
-				myAnswers += textField[i].getText()+"\n";
+				myAnswers += textField[i].getText() + "\n";
 				if (textField[i].getText().equals(answers[i])) {
 					answerLabel[i].setVisible(true);
-					score+=10;
+					score += 10;
 				} else {
 					starLabel[i].setVisible(true);
 					btnCheckAnswer[i].setVisible(true);
 				}
 			}
+			try {
+				BufferedWriter myDictation = new BufferedWriter(new FileWriter(tp.myDictation(ndaySet.getDay())));
+				myDictation.write(myAnswers);
+				myDictation.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			scoreLabel.setText(Integer.toString(score));
 			scoreLabel.setVisible(true);
 			btnGrade.setVisible(false);
 			btnExit.setVisible(true);
+			try {
+				BufferedWriter dayWriter = new BufferedWriter(new FileWriter(tp.nDay()));
+				dayWriter.write(Integer.toString(ndaySet.getDay()));
+				dayWriter.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 

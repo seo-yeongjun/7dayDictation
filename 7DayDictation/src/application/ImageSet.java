@@ -127,6 +127,11 @@ public class ImageSet {
 	public ImageIcon listen() {
 		return new ImageIcon(Main.class.getResource("/img/listen.png"));
 	}
+	
+	public ImageIcon listenRollover() {
+		return new ImageIcon(Main.class.getResource("/img/listenRollover.png"));
+	}
+
 
 	public ImageIcon grade() {
 		return new ImageIcon(Main.class.getResource("/img/grade.png"));

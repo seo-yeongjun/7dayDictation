@@ -2,6 +2,9 @@ package application.listenerForPanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 import application.Application;
 import application.TxtPathSet;
@@ -13,9 +16,21 @@ public class StartListener implements ActionListener {
 	
 	
 	public void actionPerformed(ActionEvent e) {
-	
-		if (txtPathSet.userName().exists()) {
-			Application.getMain().setContentPane(Application.getMainPanel());
+		String name = null;
+		int nDay = 0;
+		try {
+			BufferedReader reader1 = new BufferedReader(new FileReader(txtPathSet.userName()));
+			BufferedReader reader2 = new BufferedReader(new FileReader(txtPathSet.nDay()));
+			name = reader1.readLine();
+			nDay = Integer.parseInt(reader2.readLine());
+			reader1.close();
+			reader2.close();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		if (name!=null) {
+			Application.getMain().setContentPane(Application.getMainPanel(nDay));
 		} else {
 			FirstStartFrame firstStartFrame = new FirstStartFrame();
 			firstStartFrame.setLocation(420, 300);

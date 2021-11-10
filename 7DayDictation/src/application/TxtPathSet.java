@@ -3,9 +3,12 @@ package application;
 import java.io.File;
 
 public class TxtPathSet {
-	public File userName() {
-			return new File(Main.class.getResource("/txt/userName.txt").getFile());
+	public File myDictation(int i) {
+			return new File(Main.class.getResource("/txt/myDictation"+i+".txt").getFile());
 	}
+	public File userName() {
+		return new File(Main.class.getResource("/txt/userName.txt").getFile());
+}
 	public File startDate() {
 		return new File(Main.class.getResource("/txt/startDate.txt").getFile());
 	}
@@ -29,6 +32,9 @@ public class TxtPathSet {
 	}
 	public File study(int i, int progress) {
 		return new File(Main.class.getResource("/txt/study"+i+"-"+progress+".txt").getFile());
+	}
+	public File nDay() {
+		return new File(Main.class.getResource("/txt/nDay.txt").getFile());
 	}
 }
 

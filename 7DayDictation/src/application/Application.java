@@ -13,8 +13,8 @@ public class Application {
 		return main;
 	}
 
-	public static MainPanel getMainPanel() {
-		return new MainPanel();
+	public static MainPanel getMainPanel(int nDay) {
+		return new MainPanel(nDay);
 	}
 
 	public static StudyQuizPanel getStudyQuizPanel(NdaySet ndaySet) {

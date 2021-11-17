@@ -33,6 +33,11 @@ public class ImageSet {
 		return new ImageIcon(Main.class.getResource("/img/settingRollover.png"));
 	}
 
+	public ImageIcon stamp() {
+		return new ImageIcon(Main.class.getResource("/img/stamp.png"));
+	}
+
+	
 	public ImageIcon firstStart() {
 		return new ImageIcon(Main.class.getResource("/img/firstStart.png"));
 	}
@@ -163,6 +168,14 @@ public class ImageSet {
 	
 	public ImageIcon myAnswerRollover() {
 		return new ImageIcon(Main.class.getResource("/img/myAnswerRollover.png"));
+	}
+	
+	public ImageIcon reDictation() {
+		return new ImageIcon(Main.class.getResource("/img/reDictation.png"));
+	}
+	
+	public ImageIcon reDictationRollover() {
+		return new ImageIcon(Main.class.getResource("/img/reDictationRollover.png"));
 	}
 
 	// 배경 이미지 메소드

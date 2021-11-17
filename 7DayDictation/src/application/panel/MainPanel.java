@@ -28,9 +28,11 @@ public class MainPanel extends JPanel {
 	JButton btnStudyStart = new JButton(imgs.studyStart());
 	// 복습하기 버튼
 	JButton btnReview = new JButton(imgs.review());
-	
+
 	// 이름표 라벨
 	JLabel nameTag = new JLabel();
+	// 이름표 라벨
+	JLabel[] progressLabels = new JLabel[7];
 	// n일 int
 	private static int day = 1;
 	// n일 라벨
@@ -39,21 +41,21 @@ public class MainPanel extends JPanel {
 	JLabel dateTag = new JLabel();
 	// 경고문 라벨
 	JLabel nDayLabel = new JLabel();
-	// 왼쪽 오른쪽 버튼 리스너
-		MainPanelDayListener dayListener = new MainPanelDayListener(day, btnLeft, btnRight, dayTag, btnStudyStart, nDay, nDayLabel);
 
-	
 	public MainPanel(int nDay) {
 		setSize(1424, 1040);
 		setLayout(null);
 		this.nDay = nDay;
-		//경고문 라벨 세팅
-				nDayLabel.setFont(new Font("바탕체", Font.PLAIN, 28));
-				nDayLabel.setText(nDay+"일차 학습을 완료해야 "+"2일 차로 넘어갈 수 있습니다.");
-				nDayLabel.setForeground(Color.red);
-				Dimension size7 = nDayLabel.getPreferredSize();
-				nDayLabel.setBounds(80, 465, size7.width, size7.height);
-				nDayLabel.setVisible(false);
+		// 왼쪽 오른쪽 버튼 리스너
+		MainPanelDayListener dayListener = new MainPanelDayListener(day, btnLeft, btnRight, dayTag, btnStudyStart, nDay,
+				nDayLabel, btnReview);
+		// 경고문 라벨 세팅
+		nDayLabel.setFont(new Font("바탕체", Font.PLAIN, 28));
+		nDayLabel.setText(nDay + "일차 학습을 완료해야 " + "2일 차로 넘어갈 수 있습니다.");
+		nDayLabel.setForeground(Color.red);
+		Dimension size7 = nDayLabel.getPreferredSize();
+		nDayLabel.setBounds(80, 465, size7.width, size7.height);
+		nDayLabel.setVisible(false);
 		// n일 라벨 세팅
 		dayTag.setBorder(null);
 		dayTag.setFont(new Font("바탕체", Font.PLAIN, 31));
@@ -83,6 +85,7 @@ public class MainPanel extends JPanel {
 		btnLeft.addActionListener(dayListener);
 		btnRight.addActionListener(dayListener);
 		btnStudyStart.addActionListener(dayListener);
+		btnReview.addActionListener(dayListener);
 		btnLeft.setRolloverIcon(imgs.leftRollover());
 		btnReview.setRolloverIcon(imgs.reviewRollover());
 		btnRight.setRolloverIcon(imgs.rightRollover());
@@ -95,6 +98,7 @@ public class MainPanel extends JPanel {
 		btnRight.setBounds(410, 286, size2.width, size2.height);
 		btnStudyStart.setBounds(216, 346, size3.width, size3.height);
 		btnReview.setBounds(464, 346, size5.width, size5.height);
+		setProgressLabels();
 
 		add(nameTag);
 		add(dateTag);
@@ -111,7 +115,6 @@ public class MainPanel extends JPanel {
 		super.paintComponent(g);
 		g.drawImage(imgs.mainPanel(), 0, 0, this);
 		setOpaque(false);
-
 	}
 
 	// 이름 설정 메소드
@@ -145,5 +148,14 @@ public class MainPanel extends JPanel {
 		btn.setOpaque(false);
 		btn.setContentAreaFilled(false);
 		btn.setFocusPainted(false);
+	}
+
+	public void setProgressLabels() {
+		for (int i = 0; i < nDay; i++) {
+			progressLabels[i] = new JLabel(imgs.stamp());
+			Dimension size1 = progressLabels[i].getPreferredSize();
+			progressLabels[i].setBounds(10 + (i * 120), 505, size1.width, size1.height);
+			add(progressLabels[i]);
+		}
 	}
 }

@@ -30,7 +30,6 @@ public class DictationPanel extends JPanel {
 	TxtPathSet tp = new TxtPathSet();
 	BtnCheckAnswerListener btnCheckAnswerListener = new BtnCheckAnswerListener();
 	MyAnswerListener myAnswerListener = new MyAnswerListener();
-	int progress = 0;
 	JLabel dateLabel = new JLabel();
 	// 작성 필드
 	JTextField[] textField = new JTextField[10];
@@ -133,8 +132,7 @@ public class DictationPanel extends JPanel {
 		btnExit.setRolloverIcon(imgs.exitRollover());
 		Dimension size1 = btnExit.getPreferredSize();
 		btnExit.setBounds(680, 590, size1.width, size1.height);
-		// todo:
-		btnExit.addActionListener(null);
+		btnExit.addActionListener(new ExitListener());
 		btnSet(btnExit);
 		btnExit.setVisible(false);
 		add(btnExit);
@@ -272,6 +270,14 @@ public class DictationPanel extends JPanel {
 			}
 
 		}
+	}
+	class ExitListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+		System.exit(0);
+		}
+		
 	}
 
 	class GradeListener implements ActionListener {

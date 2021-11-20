@@ -26,6 +26,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import application.Application;
 import application.EffectWavListener;
 import application.ImageSet;
 import application.TxtPathSet;
@@ -195,6 +196,7 @@ public class DictationPanel extends JPanel {
 		super.paintComponent(g);
 		g.drawImage(imgs.dictationPanel(), 0, 0, this);
 		repaint();
+		Application.getMain().revalidate();
 	}
 
 	public void setTextField() {

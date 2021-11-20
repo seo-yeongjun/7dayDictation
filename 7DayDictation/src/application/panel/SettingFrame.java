@@ -56,7 +56,7 @@ class SettingPanel extends JPanel {
 	// 미리듣기 버튼
 	JButton setlisten = new JButton(imgs.setlisten());
 	// 볼륨 라벨
-	JTextField volume = new JTextField("100");
+	JTextField volume = new JTextField("1000");
 
 	public SettingPanel() {
 		setLayout(null);
@@ -76,9 +76,9 @@ class SettingPanel extends JPanel {
 				BufferedWriter volumeWriter;
 				try {
 					volumeWriter = new BufferedWriter(new FileWriter(txtPathSet.volume()));
-					if (Integer.parseInt(volume.getText()) < 0)
+					if (Float.parseFloat(volume.getText()) < 0)
 						volumeWriter.write("0");
-					else if (Integer.parseInt(volume.getText()) > 100)
+					else if (Float.parseFloat(volume.getText()) > 100)
 						volumeWriter.write("100");
 					else
 						volumeWriter.write(volume.getText());
@@ -186,7 +186,7 @@ class SettingPanel extends JPanel {
 					clip.open(audioInputStream);
 					FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 					float range = gainControl.getMaximum() - gainControl.getMinimum();
-					int volume1 = Integer.parseInt(volume.getText());
+					float volume1 = Float.parseFloat(volume.getText());
 					if (volume1 < 0) {
 						volume1 = 0;
 						volume.setText("0");

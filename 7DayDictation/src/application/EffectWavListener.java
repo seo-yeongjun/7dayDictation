@@ -21,10 +21,10 @@ public class EffectWavListener implements ActionListener {
 	Clip clip;
 
 	public EffectWavListener(String str) {
-
+		TxtPathSet txtPathSet = new TxtPathSet();
 		String volume = "100";
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(new TxtPathSet().volume()));
+			BufferedReader br = new BufferedReader(new FileReader(txtPathSet.volume()));
 			try {
 				volume = br.readLine();
 			} catch (IOException e) {

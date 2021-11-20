@@ -35,7 +35,7 @@ public class Start extends JPanel {
 		Dimension size1 = btnStart.getPreferredSize();
 		btnStart.setBounds(325, 378, size1.width, size1.height);
 		btnStart.setRolloverIcon(imgs.startStudyRollover());
-		btnStart.addActionListener(effectWavListener);
+		btnStart.addActionListener(effectWavListener); 
 		btnStart.addActionListener(new StartListener());
 		// 한글 테스트 버튼 설정
 		btnSet(btnTest);

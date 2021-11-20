@@ -32,6 +32,9 @@ public class Application {
 	public static DictationPanel getDictationPanel(NdaySet ndaySet) {
 		return new DictationPanel(ndaySet);
 	}
+	public static DictationPanel getDictationPanel(NdaySet ndaySet,int i) {
+		return new DictationPanel(ndaySet,i);
+	}
 	
 	public static ReDictationPanel getReDictationPanel(NdaySet ndaySet) {
 		return new ReDictationPanel(ndaySet);

@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import application.Application;
 import application.EffectWavListener;
 import application.ImageSet;
 import application.TxtPathSet;
@@ -85,7 +86,14 @@ public class ReDictationPanel extends JPanel {
 		btnReDictation.setRolloverIcon(imgs.reDictationRollover());
 		Dimension size1 = btnReDictation.getPreferredSize();
 		btnReDictation.setBounds(540, 590, size1.width, size1.height);
-		btnReDictation.addActionListener(new DictationListener(ndaySet));
+		btnReDictation.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Application.getMain().setContentPane(Application.getDictationPanel(ndaySet,1));
+				Application.getMain().revalidate();
+			}
+		});
 		btnReDictation.addActionListener(effectWavListener);
 		btnSet(btnReDictation);
 		add(btnReDictation);

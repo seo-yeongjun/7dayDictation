@@ -64,6 +64,7 @@ public class DictationPanel extends JPanel {
 	// day Set;
 	NdaySet ndaySet;
 	Clip clip;
+	int re = 0;
 
 	public DictationPanel(NdaySet ndaySet) {
 		setLayout(null);
@@ -91,6 +92,33 @@ public class DictationPanel extends JPanel {
 		// 점수 라벨 세팅
 		setScoreLabel();
 
+	}
+	public DictationPanel(NdaySet ndaySet, int re) {
+		setLayout(null);
+		this.ndaySet = ndaySet;
+		// 이름 세팅
+		nameLabelSet();
+		// 정답표시 세팅
+		setAnswerLabel();
+		// 듣기 버튼 세팅
+		setListenButton();
+		// 틀림 라벨 세팅
+		setStarLabel();
+		// 작성 필드 세팅
+		setTextField();
+		// 날짜 라벨 세팅
+		setDate();
+		// 채점 하기 버튼 세팅
+		setGradeButton();
+		// 종료 하기 버튼 세팅
+		setExitButton();
+		// 정답 채크 버튼 세팅
+		setBtnCheckAnswer();
+		// 내답 보기 버튼 세팅
+		setBtnMyAnswer();
+		// 점수 라벨 세팅
+		setScoreLabel();
+		this.re=re;
 	}
 
 	public void setDate() {
@@ -380,13 +408,14 @@ public class DictationPanel extends JPanel {
 			scoreLabel.setVisible(true);
 			btnGrade.setVisible(false);
 			btnExit.setVisible(true);
+			if(re==0) {
 			try {
 				BufferedWriter dayWriter = new BufferedWriter(new FileWriter(tp.nDay()));
 				dayWriter.write(Integer.toString(ndaySet.getDay()));
 				dayWriter.close();
 			} catch (IOException e1) {
 				e1.printStackTrace();
-			}
+			}}
 		}
 	}
 

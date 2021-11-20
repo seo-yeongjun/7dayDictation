@@ -1,5 +1,8 @@
 package application;
 
+import java.lang.reflect.Field;
+import java.nio.charset.Charset;
+
 import application.nDaySet.NdaySet;
 import application.panel.DictationPanel;
 import application.panel.MainPanel;
@@ -35,6 +38,14 @@ public class Application {
 	}
 
 	public static void main(String[] args) {
+		  System.setProperty("file.encoding","UTF-8");
+          try{
+              Field charset = Charset.class.getDeclaredField("defaultCharset");
+            charset.setAccessible(true);
+            charset.set(null,null);
+        }
+        catch(Exception e){
+        }
 		getMain();
 	}
 

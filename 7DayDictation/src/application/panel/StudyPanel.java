@@ -43,6 +43,7 @@ public class StudyPanel extends JPanel {
 		this.ndaySet = ndaySet;
 		
 		ActionListener nextStudyActionListener = new NextStudyListener();
+		DictationListener dictationListener = new DictationListener(ndaySet);
 		EffectWavListener effectWavListener = new EffectWavListener("choose");
 		// 학습공간 세팅
 		studyArea.setFont(new Font("바탕체", Font.PLAIN, 27));
@@ -68,7 +69,7 @@ public class StudyPanel extends JPanel {
 		btnNext.addActionListener(nextStudyActionListener);
 		btnNext.addActionListener(effectWavListener);
 		btnDictation.addActionListener(effectWavListener);
-		btnDictation.addActionListener(new DictationListener(ndaySet));
+		btnDictation.addActionListener(dictationListener);
 		Dimension size3 = btnNext.getPreferredSize();
 		btnNext.setBounds(700, 590, size3.width, size3.height);
 		Dimension size4 = btnDictation.getPreferredSize();

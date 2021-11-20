@@ -36,5 +36,8 @@ public class TxtPathSet {
 	public File nDay() {
 		return new File(Main.class.getResource("/txt/nDay.txt").getFile());
 	}
+	public File volume() {
+		return new File(Main.class.getResource("/txt/volume.txt").getFile());
+	}
 }
 

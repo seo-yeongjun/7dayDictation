@@ -3,11 +3,11 @@ package application.panel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -15,11 +15,18 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import application.EffectWavListener;
 import application.ImageSet;
 import application.TxtPathSet;
 import application.nDaySet.NdaySet;
@@ -29,6 +36,8 @@ public class DictationPanel extends JPanel {
 	ImageSet imgs = new ImageSet();
 	TxtPathSet tp = new TxtPathSet();
 	BtnCheckAnswerListener btnCheckAnswerListener = new BtnCheckAnswerListener();
+	EffectWavListener effectWavListener = new EffectWavListener("choose");
+	AudioListener audioListener = new AudioListener();
 	MyAnswerListener myAnswerListener = new MyAnswerListener();
 	JLabel dateLabel = new JLabel();
 	// 작성 필드
@@ -53,6 +62,7 @@ public class DictationPanel extends JPanel {
 	JLabel name = new JLabel();
 	// day Set;
 	NdaySet ndaySet;
+	Clip clip;
 
 	public DictationPanel(NdaySet ndaySet) {
 		setLayout(null);
@@ -79,6 +89,7 @@ public class DictationPanel extends JPanel {
 		setBtnMyAnswer();
 		// 점수 라벨 세팅
 		setScoreLabel();
+
 	}
 
 	public void setDate() {
@@ -124,6 +135,7 @@ public class DictationPanel extends JPanel {
 		Dimension size1 = btnGrade.getPreferredSize();
 		btnGrade.setBounds(540, 590, size1.width, size1.height);
 		btnGrade.addActionListener(new GradeListener());
+		btnGrade.addActionListener(effectWavListener);
 		btnSet(btnGrade);
 		add(btnGrade);
 	}
@@ -145,8 +157,7 @@ public class DictationPanel extends JPanel {
 			Dimension size1 = btnListen[i].getPreferredSize();
 			btnListen[i].setBounds(230, 110 + (i * 40), size1.width / 2, size1.height);
 			btnSet(btnListen[i]);
-			// todo:
-			btnListen[i].addActionListener(null);
+			btnListen[i].addActionListener(audioListener);
 			add(btnListen[i]);
 		}
 	}
@@ -158,6 +169,7 @@ public class DictationPanel extends JPanel {
 			Dimension size1 = btnCheckAnswer[i].getPreferredSize();
 			btnCheckAnswer[i].setBounds(620, 110 + (i * 40), size1.width / 2, size1.height);
 			btnSet(btnCheckAnswer[i]);
+			btnCheckAnswer[i].addActionListener(effectWavListener);
 			btnCheckAnswer[i].addActionListener(btnCheckAnswerListener);
 			btnCheckAnswer[i].setVisible(false);
 			add(btnCheckAnswer[i]);
@@ -171,6 +183,7 @@ public class DictationPanel extends JPanel {
 			Dimension size1 = btnMyAnswer[i].getPreferredSize();
 			btnMyAnswer[i].setBounds(620, 110 + (i * 40), size1.width / 2, size1.height);
 			btnSet(btnMyAnswer[i]);
+			btnMyAnswer[i].addActionListener(effectWavListener);
 			btnMyAnswer[i].addActionListener(myAnswerListener);
 			btnMyAnswer[i].setVisible(false);
 			add(btnMyAnswer[i]);
@@ -218,6 +231,58 @@ public class DictationPanel extends JPanel {
 		btn.setOpaque(false);
 		btn.setContentAreaFilled(false);
 		btn.setFocusPainted(false);
+	}
+
+	public Clip audioPlay(int i) {
+		String volume = null;
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(new TxtPathSet().volume()));
+			try {
+				volume = br.readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		try {
+			Clip clip = AudioSystem.getClip();
+			File audio = ndaySet.getAudios()[i];
+			AudioInputStream audioStream = AudioSystem.getAudioInputStream(audio);
+			clip.open(audioStream);
+			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+			float range = gainControl.getMaximum() - gainControl.getMinimum();
+			float gain = (float) ((range * (Float.parseFloat(volume) / 100.0)) + gainControl.getMinimum());
+			gainControl.setValue(gain);
+			return (clip);
+		} catch (LineUnavailableException e1) {
+			e1.printStackTrace();
+		} catch (UnsupportedAudioFileException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		return null;
+	}
+
+	class AudioListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			int i = 0;
+			for (int j = 0; j < 10; j++) {
+				if (btnListen[j] == (JButton) e.getSource()) {
+					i = j;
+				}
+			}
+			if (clip != null) {
+				clip.stop();
+			}
+			clip = audioPlay(i);
+			clip.start();
+		}
+
 	}
 
 	class BtnCheckAnswerListener implements ActionListener {
@@ -271,13 +336,14 @@ public class DictationPanel extends JPanel {
 
 		}
 	}
-	class ExitListener implements ActionListener{
+
+	class ExitListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-		System.exit(0);
+			System.exit(0);
 		}
-		
+
 	}
 
 	class GradeListener implements ActionListener {
@@ -286,6 +352,9 @@ public class DictationPanel extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			if (clip != null) {
+				clip.stop();
+			}
 			String[] answers = ndaySet.getDictations();
 			for (int i = 0; i < 10; i++) {
 				textField[i].setEditable(false);

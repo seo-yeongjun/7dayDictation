@@ -37,7 +37,6 @@ public class ImageSet {
 		return new ImageIcon(Main.class.getResource("/img/stamp.png"));
 	}
 
-	
 	public ImageIcon firstStart() {
 		return new ImageIcon(Main.class.getResource("/img/firstStart.png"));
 	}
@@ -97,6 +96,7 @@ public class ImageSet {
 	public ImageIcon answer() {
 		return new ImageIcon(Main.class.getResource("/img/answer.png"));
 	}
+
 	public ImageIcon next() {
 		return new ImageIcon(Main.class.getResource("/img/next.png"));
 	}
@@ -104,7 +104,7 @@ public class ImageSet {
 	public ImageIcon dictationStart() {
 		return new ImageIcon(Main.class.getResource("/img/dictationStart.png"));
 	}
-	
+
 	public ImageIcon nextRollover() {
 		return new ImageIcon(Main.class.getResource("/img/nextRollover.png"));
 	}
@@ -112,7 +112,7 @@ public class ImageSet {
 	public ImageIcon dictationStartRollover() {
 		return new ImageIcon(Main.class.getResource("/img/dictationStartRollover.png"));
 	}
-	
+
 	public ImageIcon prevtRollover() {
 		return new ImageIcon(Main.class.getResource("/img/prevRollover.png"));
 	}
@@ -120,67 +120,122 @@ public class ImageSet {
 	public ImageIcon prev() {
 		return new ImageIcon(Main.class.getResource("/img/prev.png"));
 	}
-	
+
 	public ImageIcon answerLabel() {
 		return new ImageIcon(Main.class.getResource("/img/answerLabel.png"));
 	}
-	
+
 	public ImageIcon star() {
 		return new ImageIcon(Main.class.getResource("/img/star.png"));
 	}
-	
+
 	public ImageIcon listen() {
 		return new ImageIcon(Main.class.getResource("/img/listen.png"));
 	}
-	
+
 	public ImageIcon listenRollover() {
 		return new ImageIcon(Main.class.getResource("/img/listenRollover.png"));
 	}
 
-
 	public ImageIcon grade() {
 		return new ImageIcon(Main.class.getResource("/img/grade.png"));
 	}
-	
+
 	public ImageIcon gradeRollover() {
 		return new ImageIcon(Main.class.getResource("/img/gradeRollover.png"));
 	}
-	
+
 	public ImageIcon exit() {
 		return new ImageIcon(Main.class.getResource("/img/exit.png"));
 	}
-	
+
 	public ImageIcon exitRollover() {
 		return new ImageIcon(Main.class.getResource("/img/exitRollover.png"));
 	}
-	
+
 	public ImageIcon checkAnswer() {
 		return new ImageIcon(Main.class.getResource("/img/checkAnswer.png"));
 	}
-	
+
 	public ImageIcon checkAnswerRollover() {
 		return new ImageIcon(Main.class.getResource("/img/checkAnswerRollover.png"));
 	}
-	
+
 	public ImageIcon myAnswer() {
 		return new ImageIcon(Main.class.getResource("/img/myAnswer.png"));
 	}
-	
+
 	public ImageIcon myAnswerRollover() {
 		return new ImageIcon(Main.class.getResource("/img/myAnswerRollover.png"));
 	}
-	
+
 	public ImageIcon reDictation() {
 		return new ImageIcon(Main.class.getResource("/img/reDictation.png"));
 	}
-	
+
 	public ImageIcon reDictationRollover() {
 		return new ImageIcon(Main.class.getResource("/img/reDictationRollover.png"));
 	}
 
+	public ImageIcon save() {
+		return new ImageIcon(Main.class.getResource("/img/save.png"));
+	}
+
+	public ImageIcon reset() {
+		return new ImageIcon(Main.class.getResource("/img/reset.png"));
+	}
+
+	public ImageIcon setlisten() {
+		return new ImageIcon(Main.class.getResource("/img/setlisten.png"));
+	}
+
+	public ImageIcon nameReset() {
+		return new ImageIcon(Main.class.getResource("/img/nameReset.png"));
+	}
+
+	public ImageIcon saveRollover() {
+		return new ImageIcon(Main.class.getResource("/img/saveRollover.png"));
+	}
+
+	public ImageIcon resetRollover() {
+		return new ImageIcon(Main.class.getResource("/img/resetRollover.png"));
+	}
+
+	public ImageIcon setlistenRollover() {
+		return new ImageIcon(Main.class.getResource("/img/setlistenRollover.png"));
+	}
+
+	public ImageIcon nameResetRollover() {
+		return new ImageIcon(Main.class.getResource("/img/nameResetRollover.png"));
+	}
+	public ImageIcon exitTest() {
+		return new ImageIcon(Main.class.getResource("/img/exitTest.png"));
+	}
+	public ImageIcon to0_30() {
+		return new ImageIcon(Main.class.getResource("/img/to0_30.png"));
+	}
+	public ImageIcon to40_60() {
+		return new ImageIcon(Main.class.getResource("/img/to40_60.png"));
+	}
+	public ImageIcon to70_90() {
+		return new ImageIcon(Main.class.getResource("/img/to70_90.png"));
+	}
+	public ImageIcon to100() {
+		return new ImageIcon(Main.class.getResource("/img/to100.png"));
+	}
+	
+
 	// 배경 이미지 메소드
 	public Image startBG() {
 		return new ImageIcon(Main.class.getResource("/img/startBG.png")).getImage();
+	}
+	
+	public Image resultBG() {
+		return new ImageIcon(Main.class.getResource("/img/resultBG.png")).getImage();
+	}
+
+	public Image settingBG() {
+		return new ImageIcon(Main.class.getResource("/img/settingBG.png")).getImage();
 	}
 
 	public Image firstStartBG() {
@@ -198,7 +253,7 @@ public class ImageSet {
 	public Image studyPanel() {
 		return new ImageIcon(Main.class.getResource("/img/studyPanel.png")).getImage();
 	}
-	
+
 	public Image dictationPanel() {
 		return new ImageIcon(Main.class.getResource("/img/dictationPanel.png")).getImage();
 	}

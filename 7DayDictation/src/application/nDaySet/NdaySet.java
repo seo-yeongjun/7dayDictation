@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import application.TxtPathSet;
+import application.WavPathSet;
 
 public class NdaySet {
 	int day;
@@ -15,9 +16,10 @@ public class NdaySet {
 	String QuizAnswer[] = new String[3];
 	String Study[] = new String[3];
 	String dictations[] = new String[10];
-
+	File audios[] = new File[10];
 	// txtPath
 	TxtPathSet txtPath = new TxtPathSet();
+	WavPathSet wavPathSet = new WavPathSet();
 
 	public String[] getQuizSet() {
 		return QuizSet;
@@ -43,6 +45,10 @@ public class NdaySet {
 		return dictations;
 	}
 
+	public File[] getAudios() {
+		return audios;
+	}
+	
 	public int getDay() {
 		return day;
 	}
@@ -55,13 +61,17 @@ public class NdaySet {
 		File quizAnswer = txtPath.quizAnswer(i);
 		File dictation = txtPath.dictation(i);
 
+		for (int j = 1; j <= 10; j++) {
+			audios[j-1] = wavPathSet.dictationWav(i, j);
+		}
+
 		for (int progress = 1; progress <= 3; progress++) {
 			try {
 				BufferedReader reader = new BufferedReader(new FileReader(txtPath.study(i, progress)));
 				String line = "";
-				Study[progress-1]="";
-				while((line = reader.readLine()) != null) {
-					Study[progress-1] += line + "\n";
+				Study[progress - 1] = "";
+				while ((line = reader.readLine()) != null) {
+					Study[progress - 1] += line + "\n";
 				}
 				reader.close();
 			} catch (IOException e1) {

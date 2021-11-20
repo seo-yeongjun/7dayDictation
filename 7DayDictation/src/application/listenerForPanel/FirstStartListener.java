@@ -2,8 +2,10 @@ package application.listenerForPanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -32,7 +34,15 @@ public class FirstStartListener implements ActionListener {
 		//텍스트 주소 모음 클래스
 		TxtPathSet txtPathSet= new TxtPathSet();
 		
+		int nDay = 0;
 		
+		try {
+			BufferedReader reader2 = new BufferedReader(new FileReader(txtPathSet.nDay()));
+			nDay = Integer.parseInt(reader2.readLine());
+			reader2.close();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		
 		if (nameArea.getText().equals("")) {
 			errorLabel.setVisible(true);
@@ -40,14 +50,15 @@ public class FirstStartListener implements ActionListener {
 			JButton btn = (JButton) e.getSource();
 			setUserNameAndDate(txtPathSet.userName(), txtPathSet.startDate());
 			((JFrame) btn.getTopLevelAncestor()).dispose();
-			Application.getMain().setContentPane(Application.getMainPanel(0));
+			Application.getMain().setContentPane(Application.getMainPanel(nDay));
 		} else {
 			JTextField tf = (JTextField) e.getSource();
 			setUserNameAndDate(txtPathSet.userName(), txtPathSet.startDate());
 			((JFrame) tf.getTopLevelAncestor()).dispose();
-			Application.getMain().setContentPane(Application.getMainPanel(0));
+			Application.getMain().setContentPane(Application.getMainPanel(nDay));
 		}
 
+	
 	}
 
 	//userName,startDate 입력 메소드

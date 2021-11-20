@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import application.EffectWavListener;
 import application.ImageSet;
 import application.listenerForPanel.StudyquizToStudyListener;
 import application.nDaySet.NdaySet;
@@ -45,6 +46,8 @@ public class StudyQuizPanel extends JPanel {
 		MouseAdapter leftOrRight = new LeftOrRight();
 		ActionListener nextQuiz = new NextQuiz();
 		ActionListener checkAnswer = new CheckAnswer();
+		EffectWavListener effectWavListener = new EffectWavListener("choose");
+	
 		setLayout(null);
 
 		// 다음 문제 버튼 설정
@@ -54,6 +57,7 @@ public class StudyQuizPanel extends JPanel {
 		btnNext.setBounds(600, 572, size1.width, size1.height);
 		btnNext.setRolloverIcon(imgs.nextQuizRollover());
 		btnNext.addActionListener(nextQuiz);
+		btnNext.addActionListener(effectWavListener);
 		// 학습 하기 버튼 설정
 		btnSet(btnNextStudy);
 		btnNextStudy.setVisible(false);
@@ -134,6 +138,8 @@ public class StudyQuizPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (check == 0) {
+				EffectWavListener effectWavListener1 = new EffectWavListener("wrong");
+				EffectWavListener effectWavListener2 = new EffectWavListener("answer");
 				JButton btn = (JButton) e.getSource();
 
 				// 라벨 위치 설정
@@ -145,13 +151,13 @@ public class StudyQuizPanel extends JPanel {
 				// 정답일시
 				if (ndaySet.getQuizAnswer()[progress].equals("1") && btn == btnLeft
 						|| ndaySet.getQuizAnswer()[progress].equals("0") && btn == btnRight) {
-					// to do: 정답 소리
+					effectWavListener2.run();
 					answerLabel.setVisible(true);
 					progress++;
 				} // 오답일시
 				else if (ndaySet.getQuizAnswer()[progress].equals("0") && btn == btnLeft
 						|| ndaySet.getQuizAnswer()[progress].equals("1") && btn == btnRight) {
-					// to do: 틀림 소리
+					effectWavListener1.run();
 					Timer wrongAnswer = new Timer(75, new ActionListener() {
 						int x = btn.getX();
 						int y = btn.getY();

@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import application.EffectWavListener;
 import application.ImageSet;
 import application.ScrollBarUI;
 import application.nDaySet.NdaySet;
@@ -42,7 +43,7 @@ public class StudyPanel extends JPanel {
 		this.ndaySet = ndaySet;
 		
 		ActionListener nextStudyActionListener = new NextStudyListener();
-
+		EffectWavListener effectWavListener = new EffectWavListener("choose");
 		// 학습공간 세팅
 		studyArea.setFont(new Font("바탕체", Font.PLAIN, 27));
 		progressLabel.setFont(openFontTTF("a남북통일",49f));
@@ -65,12 +66,15 @@ public class StudyPanel extends JPanel {
 		btnSet(btnDictation);
 		btnSet(btnPrev);
 		btnNext.addActionListener(nextStudyActionListener);
+		btnNext.addActionListener(effectWavListener);
+		btnDictation.addActionListener(effectWavListener);
 		btnDictation.addActionListener(new DictationListener(ndaySet));
 		Dimension size3 = btnNext.getPreferredSize();
 		btnNext.setBounds(700, 590, size3.width, size3.height);
 		Dimension size4 = btnDictation.getPreferredSize();
 		btnDictation.setBounds(640, 590, size4.width, size4.height);
 		btnPrev.addActionListener(nextStudyActionListener);
+		btnPrev.addActionListener(effectWavListener);
 		Dimension size5 = btnPrev.getPreferredSize();
 		btnPrev.setBounds(30, 590, size5.width, size5.height);
 		btnPrev.setVisible(false);

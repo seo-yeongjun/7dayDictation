@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import application.EffectWavListener;
 import application.ImageSet;
 import application.TxtPathSet;
 import application.listenerForPanel.DictationListener;
@@ -27,6 +28,7 @@ public class ReDictationPanel extends JPanel {
 	// 이미지 모음 클래스
 	ImageSet imgs = new ImageSet();
 	TxtPathSet tp = new TxtPathSet();
+	EffectWavListener effectWavListener = new EffectWavListener("choose");
 	BtnCheckAnswerListener btnCheckAnswerListener = new BtnCheckAnswerListener();
 	MyAnswerListener myAnswerListener = new MyAnswerListener();
 	int progress = 0;
@@ -74,7 +76,7 @@ public class ReDictationPanel extends JPanel {
 		setListenButton();
 		// 점수 라벨 세팅
 		setScoreLabel();
-		//다시 풀기 세팅
+		// 다시 풀기 세팅
 		setBtnReDictation();
 
 	}
@@ -84,6 +86,7 @@ public class ReDictationPanel extends JPanel {
 		Dimension size1 = btnReDictation.getPreferredSize();
 		btnReDictation.setBounds(540, 590, size1.width, size1.height);
 		btnReDictation.addActionListener(new DictationListener(ndaySet));
+		btnReDictation.addActionListener(effectWavListener);
 		btnSet(btnReDictation);
 		add(btnReDictation);
 	}
@@ -149,11 +152,12 @@ public class ReDictationPanel extends JPanel {
 			btnCheckAnswer[i].setBounds(620, 110 + (i * 40), size1.width / 2, size1.height);
 			btnSet(btnCheckAnswer[i]);
 			btnCheckAnswer[i].addActionListener(btnCheckAnswerListener);
+			btnCheckAnswer[i].addActionListener(effectWavListener);
 
 			add(btnCheckAnswer[i]);
 			String[] answers = ndaySet.getDictations();
 			if (textField[i].getText().equals(answers[i])) {
-				score+=10;
+				score += 10;
 				answerLabel[i].setVisible(true);
 			} else {
 				starLabel[i].setVisible(true);
@@ -224,6 +228,7 @@ public class ReDictationPanel extends JPanel {
 			btnMyAnswer[i].setBounds(620, 110 + (i * 40), size1.width / 2, size1.height);
 			btnSet(btnMyAnswer[i]);
 			btnMyAnswer[i].addActionListener(myAnswerListener);
+			btnMyAnswer[i].addActionListener(effectWavListener);
 			btnMyAnswer[i].setVisible(false);
 			add(btnMyAnswer[i]);
 		}

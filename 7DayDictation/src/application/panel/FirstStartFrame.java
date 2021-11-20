@@ -9,8 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-
+import javax.swing.JTextField;import application.EffectWavListener;
 import application.ImageSet;
 import application.listenerForPanel.FirstStartListener;
 
@@ -40,7 +39,7 @@ class FirstPanel extends JPanel {
 	
 	//리스너
 	FirstStartListener firstStartListener = new FirstStartListener(firstStart,nameArea,errorLabel);
-	
+	EffectWavListener effectWavListener = new EffectWavListener("choose");
 	public FirstPanel() {
 		setLayout(null);
 		
@@ -50,6 +49,7 @@ class FirstPanel extends JPanel {
 		firstStart.setBounds(78, 150, size1.width, size1.height);
 		firstStart.setRolloverIcon(imgs.firstStartRollover());
 		firstStart.addActionListener(firstStartListener);
+		firstStart.addActionListener(effectWavListener);
 		
 		// 이름필드 세팅
 		nameArea.setBorder(null);

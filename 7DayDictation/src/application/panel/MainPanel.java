@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import application.EffectWavListener;
 import application.ImageSet;
 import application.TxtPathSet;
 import application.listenerForPanel.MainPanelDayListener;
@@ -47,6 +48,7 @@ public class MainPanel extends JPanel {
 		setLayout(null);
 		this.nDay = nDay;
 		// 왼쪽 오른쪽 버튼 리스너
+		EffectWavListener effectWavListener = new EffectWavListener("choose");
 		MainPanelDayListener dayListener = new MainPanelDayListener(day, btnLeft, btnRight, dayTag, btnStudyStart, nDay,
 				nDayLabel, btnReview);
 		// 경고문 라벨 세팅
@@ -86,6 +88,10 @@ public class MainPanel extends JPanel {
 		btnRight.addActionListener(dayListener);
 		btnStudyStart.addActionListener(dayListener);
 		btnReview.addActionListener(dayListener);
+		btnLeft.addActionListener(effectWavListener);
+		btnRight.addActionListener(effectWavListener);
+		btnStudyStart.addActionListener(effectWavListener);
+		btnReview.addActionListener(effectWavListener);
 		btnLeft.setRolloverIcon(imgs.leftRollover());
 		btnReview.setRolloverIcon(imgs.reviewRollover());
 		btnRight.setRolloverIcon(imgs.rightRollover());

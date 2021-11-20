@@ -63,7 +63,7 @@ public class MainPanelDayListener implements ActionListener {
 			Application.getMain().setContentPane(Application.getReDictationPanel(new NdaySet(day)));
 			Application.getMain().revalidate();}
 			else {
-				nDayLabel.setText(day+"일차 학습을 완료해야 "+day+"복습을 할 수 있습니다.");
+				nDayLabel.setText(day+"일차 학습을 완료해야 "+day+"일차 복습을 할 수 있습니다.");
 				nDayLabel.setVisible(true);
 			}
 		}

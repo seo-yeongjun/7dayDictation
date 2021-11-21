@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -29,6 +31,8 @@ public class MainPanel extends JPanel {
 	JButton btnStudyStart = new JButton(imgs.studyStart());
 	// 복습하기 버튼
 	JButton btnReview = new JButton(imgs.review());
+	// 이스터 에그 버튼
+	JButton btnEgg = new JButton("ㅋㅋㅋㅋ");
 
 	// 이름표 라벨
 	JLabel nameTag = new JLabel();
@@ -84,6 +88,7 @@ public class MainPanel extends JPanel {
 		btnSet(btnRight);
 		btnSet(btnStudyStart);
 		btnSet(btnReview);
+		btnSet(btnEgg);
 		btnLeft.addActionListener(dayListener);
 		btnRight.addActionListener(dayListener);
 		btnStudyStart.addActionListener(dayListener);
@@ -96,16 +101,25 @@ public class MainPanel extends JPanel {
 		btnReview.setRolloverIcon(imgs.reviewRollover());
 		btnRight.setRolloverIcon(imgs.rightRollover());
 		btnStudyStart.setRolloverIcon(imgs.studyStartRollover());
+		btnEgg.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new GameFrame();
+			}
+		});
 		Dimension size1 = btnLeft.getPreferredSize();
 		Dimension size2 = btnRight.getPreferredSize();
 		Dimension size3 = btnStudyStart.getPreferredSize();
 		Dimension size5 = btnReview.getPreferredSize();
+		Dimension size8 = btnEgg.getPreferredSize();
+		btnEgg.setBounds(760, 5, size8.width, size8.height);
 		btnLeft.setBounds(216, 286, size1.width, size1.height);
 		btnRight.setBounds(410, 286, size2.width, size2.height);
 		btnStudyStart.setBounds(216, 346, size3.width, size3.height);
 		btnReview.setBounds(464, 346, size5.width, size5.height);
 		setProgressLabels();
 
+		add(btnEgg);
 		add(nameTag);
 		add(dateTag);
 		add(btnLeft);

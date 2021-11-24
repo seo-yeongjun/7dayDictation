@@ -14,6 +14,7 @@ import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -25,7 +26,7 @@ public class GameFrame extends JFrame {
 		Container c = getContentPane();
 		setSize(800, 600);
 		setTitle("이스터에그");
-		setResizable(false); // 화면크기 바꾸기 불가
+		setResizable(true); // 화면크기 바꾸기 불가
 		setVisible(true);
 		ProgressPanel progressPanel = new ProgressPanel();
 		GamePanel gamePanel = new GamePanel(progressPanel);
@@ -56,6 +57,7 @@ class ProgressPanel extends JPanel {
 //게임 진행 패널
 class GamePanel extends JPanel {
 	// 떨어지는 라벨 저장할 벡터
+	int end = 0;
 	static Vector<JLabel> vector = new Vector<JLabel>();
 	JTextField txtField;
 	ProgressPanel progressPanel;
@@ -128,7 +130,7 @@ class CreateVirusThread extends Thread {
 	@Override
 	public void run() {
 		Words words = new Words();
-		while (true) {
+		while (gamePanel.end != 1) {
 			String str = words.getRandomWord(); // 라벨 스트링
 			virus = new JLabel(str);
 			virus.setOpaque(false);
@@ -180,18 +182,24 @@ class FallingThread extends Thread {
 
 	@Override
 	public void run() {
-		while (true) {
+		while (gamePanel.end != 1) {
 			// 벡터에서 바이러스 하나씩 꺼내서 아래로 이동 시키기
 			for (int i = 0; i < vector.size(); i++) {
 				move(vector.get(i), i); // 레이블값과 레이블의 인덱스값인 인수로 전송
 			}
 			if (progressPanel.life == 0) {
-				System.exit(0);
+				gamePanel.end = 1;
 			}
 			try {
 				sleep(delay);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
+			}
+		}
+		if (gamePanel.end == 1) {
+			int end = JOptionPane.showConfirmDialog(gamePanel.getTopLevelAncestor(), "점수 :" + progressPanel.score, "확인",
+					JOptionPane.CLOSED_OPTION);
+			if (end == JOptionPane.CLOSED_OPTION) {
 			}
 		}
 	}
@@ -202,7 +210,7 @@ class Words {
 
 	public Words() {
 		try {
-			Scanner scanner = new Scanner(new FileReader("words.txt"));
+			Scanner scanner = new Scanner(new FileReader("imEgg.txt"));
 			while (scanner.hasNext()) { // 파일 끝까지 읽음
 				String word = scanner.nextLine(); // 한 라인을 읽고 '\n'을 버린 나머지 문자열만 리턴
 				wordVector.add(word); // 문자열을 벡터에 저장

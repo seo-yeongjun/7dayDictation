@@ -8,6 +8,7 @@ import application.Application;
 import application.nDaySet.NdaySet;
 import application.panel.FirstStartFrame;
 
+//퀴즈 패널을 학습하기 패널로 전환하기 위한 리스너
 public class StudyquizToStudyListener implements ActionListener {
 	NdaySet ndaySet;
 	public StudyquizToStudyListener(NdaySet ndaySet) {

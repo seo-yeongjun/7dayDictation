@@ -10,6 +10,7 @@ import application.Application;
 import application.TxtPathSet;
 import application.panel.FirstStartFrame;
 
+//시작 패널에서 메인 패널로 전환하기 위한 리스너 첫 시작이면 첫시작 프레임을 염
 public class StartListener implements ActionListener {
 	//텍스트 주소 모음 클래스
 	TxtPathSet txtPathSet= new TxtPathSet();

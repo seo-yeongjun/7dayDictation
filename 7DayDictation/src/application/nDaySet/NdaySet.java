@@ -8,6 +8,7 @@ import java.io.IOException;
 import application.TxtPathSet;
 import application.WavPathSet;
 
+//N일차에 대한 필요 정보를 txt파일에서 읽어 구조체로 만듬
 public class NdaySet {
 	int day;
 	String QuizSet[] = new String[3];

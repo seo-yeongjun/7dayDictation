@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import application.Application;
 import application.TxtPathSet;
 
+//첫 시작 프레임의 리스너 (이름, 시작 날짜 저장)
 public class FirstStartListener implements ActionListener {
 	JButton firstStart;
 	JTextField nameArea;
@@ -44,6 +45,7 @@ public class FirstStartListener implements ActionListener {
 			e1.printStackTrace();
 		}
 		
+		//이름 필드가 비어있으면 에러 메시지 출력
 		if (nameArea.getText().equals("")) {
 			errorLabel.setVisible(true);
 		} else if (firstStart == e.getSource()) {

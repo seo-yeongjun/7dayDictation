@@ -26,7 +26,7 @@ public class GameFrame extends JFrame {
 		Container c = getContentPane();
 		setSize(800, 600);
 		setTitle("이스터에그");
-		setResizable(true); // 화면크기 바꾸기 불가
+		setResizable(false); // 화면크기 바꾸기 불가
 		setVisible(true);
 		ProgressPanel progressPanel = new ProgressPanel();
 		GamePanel gamePanel = new GamePanel(progressPanel,vector);

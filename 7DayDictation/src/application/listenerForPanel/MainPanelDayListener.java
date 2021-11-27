@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import application.Application;
-import application.nDaySet.NdaySet;
+import application.NdaySet;
 
 //메인 패널에서 며칠인지 고르고 해당 날짜 학습 패널 전환을 위한 리스너
 public class MainPanelDayListener implements ActionListener {

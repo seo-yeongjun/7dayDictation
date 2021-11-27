@@ -16,8 +16,8 @@ import javax.swing.JTextArea;
 
 import application.EffectWavListener;
 import application.ImageSet;
+import application.NdaySet;
 import application.ScrollBarUI;
-import application.nDaySet.NdaySet;
 import application.listenerForPanel.DictationListener;
 
 public class StudyPanel extends JPanel {

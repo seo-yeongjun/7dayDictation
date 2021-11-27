@@ -20,17 +20,17 @@ import javax.swing.JTextField;
 
 // 게임 프레임
 public class GameFrame extends JFrame {
-
+	Vector<JLabel> vector = new Vector<JLabel>();
 	public GameFrame() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		Container c = getContentPane();
 		setSize(800, 600);
 		setTitle("이스터에그");
 		setResizable(true); // 화면크기 바꾸기 불가
 		setVisible(true);
 		ProgressPanel progressPanel = new ProgressPanel();
-		GamePanel gamePanel = new GamePanel(progressPanel);
-		TxtPanel txtPanel = new TxtPanel(GamePanel.vector, gamePanel, progressPanel);
+		GamePanel gamePanel = new GamePanel(progressPanel,vector);
+		TxtPanel txtPanel = new TxtPanel(vector, gamePanel, progressPanel);
 		c.setLayout(new BorderLayout());
 		c.add(gamePanel, BorderLayout.CENTER); // GamePanel을 프레임 CENTER에 배치한다.
 		c.add(txtPanel, BorderLayout.SOUTH);
@@ -43,14 +43,17 @@ public class GameFrame extends JFrame {
 class ProgressPanel extends JPanel {
 	int life = 5;
 	int score = 0;
-	JLabel lifeLabel = new JLabel("남은 목숨 : " + life);
-	JLabel scoreLabel = new JLabel("점수 : " + score);
+	JLabel lifeLabel;
+	JLabel scoreLabel;
 
 	public ProgressPanel() {
+		lifeLabel = new JLabel("남은 목숨 : " + life);
+		scoreLabel = new JLabel("점수 : " + score);
 		this.setBackground(Color.gray);
 		setLayout(new FlowLayout());
 		add(lifeLabel);
 		add(scoreLabel);
+	
 	}
 }
 
@@ -58,11 +61,10 @@ class ProgressPanel extends JPanel {
 class GamePanel extends JPanel {
 	// 떨어지는 라벨 저장할 벡터
 	int end = 0;
-	static Vector<JLabel> vector = new Vector<JLabel>();
 	JTextField txtField;
 	ProgressPanel progressPanel;
 
-	public GamePanel(ProgressPanel progressPanel) {
+	public GamePanel(ProgressPanel progressPanel, Vector<JLabel> vector) {
 		this.setBackground(Color.white);
 		this.progressPanel = progressPanel;
 		setLayout(null);
@@ -164,6 +166,7 @@ class FallingThread extends Thread {
 
 	// 벡터에서 라벨 빼내와야 되니깐 벡터를 생성자로 받아온거임
 	public FallingThread(Vector<JLabel> vector, GamePanel gamePanel, ProgressPanel progressPanel) {
+		super("zz");
 		this.vector = vector;
 		this.gamePanel = gamePanel;
 		this.progressPanel = progressPanel;

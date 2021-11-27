@@ -3,7 +3,6 @@ package application;
 import java.lang.reflect.Field;
 import java.nio.charset.Charset;
 
-import application.nDaySet.NdaySet;
 import application.panel.DictationPanel;
 import application.panel.GameFrame;
 import application.panel.MainPanel;

@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 import application.Application;
-import application.nDaySet.NdaySet;
+import application.NdaySet;
 import application.panel.FirstStartFrame;
 
 //퀴즈 패널을 학습하기 패널로 전환하기 위한 리스너

@@ -20,9 +20,9 @@ import javax.swing.JTextField;
 import application.Application;
 import application.EffectWavListener;
 import application.ImageSet;
+import application.NdaySet;
 import application.TxtPathSet;
 import application.listenerForPanel.DictationListener;
-import application.nDaySet.NdaySet;
 import application.panel.DictationPanel.GradeListener;
 
 public class ReDictationPanel extends JPanel {

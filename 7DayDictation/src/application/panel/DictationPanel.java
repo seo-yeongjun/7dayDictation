@@ -29,10 +29,17 @@ import javax.swing.JTextField;
 import application.Application;
 import application.EffectWavListener;
 import application.ImageSet;
+import application.NdaySet;
 import application.TxtPathSet;
-import application.nDaySet.NdaySet;
 
 public class DictationPanel extends JPanel {
+	
+	
+	
+	
+	
+	
+	
 	// 이미지 모음 클래스
 	ImageSet imgs = new ImageSet();
 	TxtPathSet tp = new TxtPathSet();

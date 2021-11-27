@@ -27,8 +27,8 @@ import javax.swing.JTextField;
 
 import application.EffectWavListener;
 import application.ImageSet;
+import application.NdaySet;
 import application.TxtPathSet;
-import application.nDaySet.NdaySet;
 
 public class TestDictationFrame extends JFrame {
 	TestDictationFrame() {

@@ -16,8 +16,8 @@ import javax.swing.Timer;
 
 import application.EffectWavListener;
 import application.ImageSet;
+import application.NdaySet;
 import application.listenerForPanel.StudyquizToStudyListener;
-import application.nDaySet.NdaySet;
 
 public class StudyQuizPanel extends JPanel {
 	int check = 0;
